@@ -1,0 +1,190 @@
+html {
+  overscroll-behavior: none;
+  overflow: hidden;
+}
+body {
+  margin: 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+#app {
+  height: 100vh;
+}
+a {
+  text-decoration: none;
+  padding: 1px;
+  color: inherit;
+  cursor: pointer;
+}
+a:visited { color: inherit; }
+a[disabled] { color: grey; }
+
+button, .btn {
+  outline: none;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  font-size: 1em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  height: 40px;
+  margin: 5px;
+  width: 150px;
+  opacity: 0.8;
+}
+button[selected] {
+  border-color: #ff8c0080;
+  opacity: 1;
+}
+button:focus {
+  opacity: 1;
+}
+
+a:hover, button:hover, .btn:hover {
+  outline: none;
+  border-color: rgba(255, 140, 0, 0.6);
+}
+
+input, select {
+  appearance: none;
+  outline: none;
+  border-style: solid;
+  border-radius: 7px;
+  border-width: 1px;
+  border-color: transparent;
+  padding: 5px;
+  background: transparent;
+  opacity: 0.8;
+}
+input:hover, select:hover {
+  border-color: rgba(255, 140, 0, 0.6);
+  opacity: 1;
+}
+input:focus {
+  border-color: rgba(255, 140, 0, 0.7) !important;
+  opacity: 1;
+}
+
+select {
+  background-image: url(./assets/ui_downarrow.svg);
+  background-size: 8px;
+  background-repeat: no-repeat;
+  background-position: calc(100% - .35em) center;
+  cursor: pointer;
+}
+
+.hidden { display: none !important; }
+
+:root {
+  font-family: -apple-system, system-ui;
+  font-size: 1.2em;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  --sat: env(safe-area-inset-top);
+  --sar: env(safe-area-inset-right);
+  --sal: env(safe-area-inset-left);
+  --sab: env(safe-area-inset-bottom);
+  color-scheme: light dark;
+}
+
+#app {
+  color: light-dark(#213547, rgba(255, 255, 255, 0.87));
+  background-color: light-dark(#ffffff, #191919);
+}
+
+button, .btn {
+  background-color: light-dark(#b6b5b5, #353535);
+  color: white;
+}
+button:disabled, .btn:disabled {
+  color: light-dark(rgba(16, 16, 16, 0.3), rgba(255, 255, 255, 0.3));
+  fill: grey !important;
+}
+
+input, select {
+  background-color: light-dark(#edecec, #303030);
+}
+input[type='range'] {
+  background-color: light-dark(#bbbbbb, #303030);
+}
+input[type='range'] {
+  appearance: none;
+  cursor: pointer;
+  border: 0;
+  height: 4px;
+  padding: 0;
+  margin: 5px 0;
+  background: light-dark(#bbbbbb, #303030);
+}
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: gray;
+}
+input[type='range']::-moz-range-thumb {
+  background-color: gray;
+  border-radius: 50%;
+  border: none;
+  width: 16px;
+  height: 16px;
+}
+
+#lights_brightness {
+  background: linear-gradient(90deg, #242424, #CCCCCC) !important;
+}
+#lights_exposure {
+  background: linear-gradient(90deg, #242424, #CCCCCC) !important;
+}
+#lights_gamma {
+  background: linear-gradient(90deg, #242424, #CCCCCC) !important;
+}
+#lights_contrast {
+  background: linear-gradient(270deg, #242424, #CCCCCC) !important;
+}
+#lights_shadows {
+  background: linear-gradient(270deg, #242424, #CCCCCC) !important;
+}
+#lights_highlights {
+  background: linear-gradient(90deg, #242424, #CCCCCC) !important;
+}
+#lights_bloom {
+  background: linear-gradient(90deg, #242424, #CCCCCC) !important;
+}
+#colors_temperature {
+  background: linear-gradient(90deg, #2c75d3, #ddbc57) !important;
+}
+#colors_tint {
+  background: linear-gradient(to left, rgb(58, 224, 0), rgb(150, 0, 229)) !important;
+}
+#colors_vibrance {
+  background: linear-gradient(90deg, #7f7f7f, #827f7c, #818078, #798378, #6f867f, #69878b, #628a98, #48949b, #2d9d93, #27a57e, #43aa60, #74ac3e, #a8a823, #e0792a, #f8396b, #9900cd) !important;
+}
+#colors_saturation {
+  background: linear-gradient(90deg, #7f7f7f, #827f7c, #818078, #798378, #6f867f, #69878b, #628a98, #48949b, #2d9d93, #27a57e, #43aa60, #74ac3e, #a8a823, #e0792a, #f8396b, #9900cd) !important;
+}
+#colors_sepia {
+  background: linear-gradient(90deg, #242424, #ddbc57) !important;
+}
+#effects_vignette {
+  background: linear-gradient(270deg, #242424, #CCCCCC) !important;
+}
+#effects_clarity {
+  background: light-dark(#bbbbbb, #303030) !important;
+}
+#effects_noise {
+  background: light-dark(#bbbbbb, #303030) !important;
+}
+hr {
+  border: 1px solid;
+  border-color: light-dark(#f0f0f0, #2e2e2e);
+}
+
+.dark { color-scheme: dark; }
+.light { color-scheme: light; }
