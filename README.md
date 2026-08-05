@@ -1,7 +1,7 @@
 # Vue3 PhotoEditor
-![alt text](8e79d95d34640f1ba03694ac2e091b68.png)
-![alt text](55f3c19b73c3da617a3f9d08f06ea0e2.png)
-![alt text](86959d2e8334dd6d06b2b9392f740ae7.png)
+![Vue3 PhotoEditor 首页](src/assets/111.png)
+![Vue3 PhotoEditor 编辑界面](src/assets/222.png)
+![Vue3 PhotoEditor 裁剪功能](src/assets/333.png)
 一个基于 **Vue 3 + WebGL** 的纯前端图片编辑器，所有图像处理均在浏览器本地完成，**100% 隐私、免费且开源**。
 
 ![Vue 3](https://img.shields.io/badge/Vue-3.4-42b883) ![Vite](https://img.shields.io/badge/Vite-6-646cff)
