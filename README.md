@@ -1,4 +1,5 @@
 # Vue3 PhotoEditor
+![Vue3 PhotoEditor 封面](src/assets/hero.jpg)
 ![Vue3 PhotoEditor 首页](src/assets/111.png)
 ![Vue3 PhotoEditor 编辑界面](src/assets/222.png)
 ![Vue3 PhotoEditor 裁剪功能](src/assets/333.png)
