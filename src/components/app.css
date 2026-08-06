@@ -18,14 +18,19 @@
 
 .minieditor .app .header, .minieditor .app .footer {
   flex: 0 0 auto;
-  height: 38px;
-  line-height: 38px;
+  height: 52px;
+  line-height: 52px;
   z-index: 2;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding-left: env(safe-area-inset-left);
   padding-right: env(safe-area-inset-right);
-  background-color: light-dark(#ffffff, #191919);
+  background: light-dark(rgba(255, 255, 255, 0.62), rgba(17, 27, 48, 0.62));
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  border-bottom: 1px solid light-dark(rgba(30, 50, 90, 0.08), rgba(120, 160, 220, 0.12));
+  box-shadow: 0 1px 0 light-dark(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.04));
 }
 
 .minieditor .app .header {
@@ -36,6 +41,9 @@
   height: 30px;
   align-items: center;
   justify-content: flex-end;
+  background: transparent;
+  backdrop-filter: none;
+  border-bottom: none;
 }
 
 .minieditor .app .main {
@@ -48,11 +56,219 @@
   padding-right: env(safe-area-inset-right);
 }
 
+.minieditor .app .main.landing {
+  background-image: url('/samples/hero-bg-new.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  justify-content: center;
+}
+
+.minieditor .app .main.landing::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: light-dark(rgba(244, 247, 252, 0.45), rgba(8, 12, 24, 0.45));
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  z-index: 0;
+}
+
+.minieditor .app .main.landing::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 600px 400px at 20% 30%, var(--accent-soft), transparent 70%),
+    radial-gradient(ellipse 500px 350px at 80% 70%, rgba(124, 140, 255, 0.12), transparent 70%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.minieditor .app .main.landing > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* 毛玻璃封面卡片 —— 居中排版 + 编辑式序号列表 */
+.hero_card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 48px 34px;
+  border-radius: 22px;
+  background: light-dark(rgba(255, 255, 255, 0.52), rgba(20, 30, 52, 0.62));
+  backdrop-filter: blur(28px) saturate(1.5);
+  -webkit-backdrop-filter: blur(28px) saturate(1.5);
+  border: 1px solid light-dark(rgba(255, 255, 255, 0.5), rgba(120, 160, 220, 0.18));
+  box-shadow:
+    0 14px 44px rgba(8, 15, 35, 0.2),
+    inset 0 1px 0 light-dark(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.08));
+  animation: heroCardIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  max-width: 560px;
+  width: calc(100% - 32px);
+  text-align: center;
+}
+
+@keyframes heroCardIn {
+  from { opacity: 0; transform: translateY(30px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* 顶部元数据栏：左侧编号 + 右侧版本号，底部 hairline 分隔 */
+.hero_meta {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 14px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid var(--hairline);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  animation: heroFadeIn 0.6s ease 0.15s both;
+}
+
+.hero_index {
+  color: var(--accent-strong);
+}
+
+.hero_version {
+  color: light-dark(#7a8aa0, rgba(255, 255, 255, 0.45));
+}
+
+.hero_subtitle {
+  font-size: 14px;
+  line-height: 1.6;
+  color: light-dark(#5a6a80, rgba(255, 255, 255, 0.58));
+  margin: 0 auto 26px;
+  font-weight: 400;
+  max-width: 400px;
+  animation: heroFadeIn 0.6s ease 0.25s both;
+}
+
+.hero_actions {
+  display: flex;
+  gap: 10px;
+  align-items: stretch;
+  animation: heroFadeIn 0.6s ease 0.35s both;
+}
+
+/* 编辑式纵向特性列表 —— 左侧大序号 + 右侧标题/描述，hairline 分隔 */
+.hero_features {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 26px;
+  padding-top: 18px;
+  border-top: 1px solid var(--hairline);
+  animation: heroFadeIn 0.6s ease 0.5s both;
+}
+
+.hero_feature {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--hairline);
+  transition: transform 0.2s ease;
+}
+
+.hero_feature:last-child {
+  border-bottom: none;
+  padding-bottom: 2px;
+}
+
+.hero_feature:hover {
+  transform: translateX(2px);
+}
+
+.feat_num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--accent-strong);
+  letter-spacing: 1px;
+  flex-shrink: 0;
+  width: 22px;
+}
+
+.feat_body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.feat_body b {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  color: light-dark(#1a2740, rgba(255, 255, 255, 0.88));
+  letter-spacing: 0.1px;
+}
+
+.feat_body em {
+  font-style: normal;
+  font-size: 11px;
+  line-height: 1.5;
+  color: light-dark(#6a7a92, rgba(255, 255, 255, 0.48));
+}
+
+@keyframes heroFadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero_card, .hero_meta, .hero_subtitle, .hero_actions, .hero_features {
+    animation: none;
+  }
+  .hero_feature:hover { transform: none; }
+}
+
 .minieditor .banner {
-  margin: 5px;
+  margin: 5px 14px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.4px;
+  font-size: 1.35em;
+  color: var(--accent-strong);
+}
+
+.minieditor .banner::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 18px;
+  border-radius: 2px;
+  background: var(--accent);
+  margin-right: 10px;
+  vertical-align: middle;
+  opacity: 0.85;
+}
+
+.minieditor .main h1 {
+  font-family: var(--font-display);
+  font-size: 2.8em;
+  font-weight: 400;
+  letter-spacing: -0.5px;
+  color: light-dark(#1a2740, rgba(255, 255, 255, 0.95));
+  margin: 8px 0 6px;
+  line-height: 1.1;
+}
+
+.minieditor .main h1 em {
+  font-style: italic;
+  color: var(--accent-strong);
 }
 
 .minieditor .btn_theme {

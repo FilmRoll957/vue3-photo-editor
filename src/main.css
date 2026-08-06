@@ -21,19 +21,26 @@ a[disabled] { color: grey; }
 
 button, .btn {
   outline: none;
-  border-radius: 8px;
+  border-radius: 10px;
   border: 1px solid transparent;
-  font-size: 1em;
-  font-weight: 500;
+  font-size: 0.9em;
+  font-weight: 600;
+  font-family: var(--font-body);
+  letter-spacing: 0.2px;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: border-color 0.25s, box-shadow 0.2s, background-color 0.25s, transform 0.15s;
   height: 40px;
   margin: 5px;
   width: 150px;
-  opacity: 0.8;
+  opacity: 0.88;
+}
+
+button:active, .btn:active {
+  transform: scale(0.97);
 }
 button[selected] {
-  border-color: #ff8c0080;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent-soft) inset;
   opacity: 1;
 }
 button:focus {
@@ -42,14 +49,15 @@ button:focus {
 
 a:hover, button:hover, .btn:hover {
   outline: none;
-  border-color: rgba(255, 140, 0, 0.6);
+  border-color: var(--accent-hover);
+  box-shadow: 0 2px 10px var(--accent-soft);
 }
 
 input, select {
   appearance: none;
   outline: none;
   border-style: solid;
-  border-radius: 7px;
+  border-radius: 8px;
   border-width: 1px;
   border-color: transparent;
   padding: 5px;
@@ -57,11 +65,11 @@ input, select {
   opacity: 0.8;
 }
 input:hover, select:hover {
-  border-color: rgba(255, 140, 0, 0.6);
+  border-color: var(--accent-hover);
   opacity: 1;
 }
 input:focus {
-  border-color: rgba(255, 140, 0, 0.7) !important;
+  border-color: var(--accent-focus) !important;
   opacity: 1;
 }
 
@@ -76,8 +84,8 @@ select {
 .hidden { display: none !important; }
 
 :root {
-  font-family: -apple-system, system-ui;
-  font-size: 1.2em;
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 1.15em;
   line-height: 1.5;
   font-weight: 400;
   font-synthesis: none;
@@ -90,15 +98,41 @@ select {
   --sal: env(safe-area-inset-left);
   --sab: env(safe-area-inset-bottom);
   color-scheme: light dark;
+  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-body: 'Manrope', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+  --accent: #3b82f6;
+  --accent-strong: #2563eb;
+  --accent-hover: rgba(59, 130, 246, 0.55);
+  --accent-focus: rgba(59, 130, 246, 0.75);
+  --accent-soft: rgba(59, 130, 246, 0.16);
+  --hairline: light-dark(rgba(30, 50, 90, 0.1), rgba(120, 160, 220, 0.1));
 }
 
 #app {
-  color: light-dark(#213547, rgba(255, 255, 255, 0.87));
-  background-color: light-dark(#ffffff, #191919);
+  color: light-dark(#22303f, rgba(255, 255, 255, 0.88));
+  background: light-dark(linear-gradient(180deg, #f4f7fc 0%, #e7edf8 100%), linear-gradient(180deg, #0d1424 0%, #111b30 100%));
+  position: relative;
+}
+
+#app::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 800px 600px at 15% 20%, var(--accent-soft), transparent 60%),
+    radial-gradient(ellipse 700px 500px at 85% 80%, rgba(124, 140, 255, 0.08), transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+#app > * {
+  position: relative;
+  z-index: 1;
 }
 
 button, .btn {
-  background-color: light-dark(#b6b5b5, #353535);
+  background-color: light-dark(#d9dee8, #283350);
   color: white;
 }
 button:disabled, .btn:disabled {
@@ -107,83 +141,99 @@ button:disabled, .btn:disabled {
 }
 
 input, select {
-  background-color: light-dark(#edecec, #303030);
-}
-input[type='range'] {
-  background-color: light-dark(#bbbbbb, #303030);
+  background-color: light-dark(#eef1f6, #1d2739);
 }
 input[type='range'] {
   appearance: none;
   cursor: pointer;
   border: 0;
-  height: 4px;
+  height: 6px;
   padding: 0;
   margin: 5px 0;
-  background: light-dark(#bbbbbb, #303030);
+  background: linear-gradient(to right, var(--accent) 0%, var(--accent) var(--p, 50%), light-dark(#a6b2c6, #3e4e70) var(--p, 50%));
+  border-radius: 6px;
 }
 input[type='range']::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
-  background-color: gray;
+  background: var(--accent);
+  border: 2px solid light-dark(#ffffff, #eaf1ff);
+  margin-top: -6px;
+  box-shadow: 0 1px 4px rgba(10, 20, 45, 0.35), 0 0 0 4px var(--accent-soft);
 }
 input[type='range']::-moz-range-thumb {
-  background-color: gray;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
-  border: none;
-  width: 16px;
-  height: 16px;
+  background: var(--accent);
+  border: 2px solid light-dark(#ffffff, #eaf1ff);
+  box-shadow: 0 1px 4px rgba(10, 20, 45, 0.35), 0 0 0 4px var(--accent-soft);
+}
+input[type='range']:hover::-webkit-slider-thumb,
+input[type='range']:active::-webkit-slider-thumb {
+  transform: scale(1.15);
+  box-shadow: 0 1px 4px rgba(10, 20, 45, 0.35), 0 0 0 6px var(--accent-soft);
+}
+input[type='range']:hover::-moz-range-thumb,
+input[type='range']:active::-moz-range-thumb {
+  transform: scale(1.15);
+  box-shadow: 0 1px 4px rgba(10, 20, 45, 0.35), 0 0 0 6px var(--accent-soft);
+}
+input[type='range']:focus-visible {
+  outline: 2px solid var(--accent-focus);
+  outline-offset: 3px;
 }
 
 #lights_brightness {
-  background: linear-gradient(90deg, #242424, #CCCCCC) !important;
+  background: linear-gradient(90deg, #101b2e, #d7dde8) !important;
 }
 #lights_exposure {
-  background: linear-gradient(90deg, #242424, #CCCCCC) !important;
+  background: linear-gradient(90deg, #101b2e, #d7dde8) !important;
 }
 #lights_gamma {
-  background: linear-gradient(90deg, #242424, #CCCCCC) !important;
+  background: linear-gradient(90deg, #101b2e, #d7dde8) !important;
 }
 #lights_contrast {
-  background: linear-gradient(270deg, #242424, #CCCCCC) !important;
+  background: linear-gradient(270deg, #101b2e, #d7dde8) !important;
 }
 #lights_shadows {
-  background: linear-gradient(270deg, #242424, #CCCCCC) !important;
+  background: linear-gradient(270deg, #101b2e, #d7dde8) !important;
 }
 #lights_highlights {
-  background: linear-gradient(90deg, #242424, #CCCCCC) !important;
+  background: linear-gradient(90deg, #101b2e, #d7dde8) !important;
 }
 #lights_bloom {
-  background: linear-gradient(90deg, #242424, #CCCCCC) !important;
+  background: linear-gradient(90deg, #101b2e, #d7dde8) !important;
 }
 #colors_temperature {
-  background: linear-gradient(90deg, #2c75d3, #ddbc57) !important;
+  background: linear-gradient(90deg, #2b6fd4, #e8d077) !important;
 }
 #colors_tint {
-  background: linear-gradient(to left, rgb(58, 224, 0), rgb(150, 0, 229)) !important;
+  background: linear-gradient(to left, rgb(0, 206, 148), rgb(140, 96, 255)) !important;
 }
 #colors_vibrance {
-  background: linear-gradient(90deg, #7f7f7f, #827f7c, #818078, #798378, #6f867f, #69878b, #628a98, #48949b, #2d9d93, #27a57e, #43aa60, #74ac3e, #a8a823, #e0792a, #f8396b, #9900cd) !important;
+  background: linear-gradient(90deg, #7f8f9f, #82908f, #818f86, #79907e, #6f9184, #699291, #6292a3, #4896a6, #2d9dac, #27a58c, #43aa70, #74ac52, #a8a842, #e0a04f, #f8606e, #9d6bff) !important;
 }
 #colors_saturation {
-  background: linear-gradient(90deg, #7f7f7f, #827f7c, #818078, #798378, #6f867f, #69878b, #628a98, #48949b, #2d9d93, #27a57e, #43aa60, #74ac3e, #a8a823, #e0792a, #f8396b, #9900cd) !important;
+  background: linear-gradient(90deg, #7f8f9f, #82908f, #818f86, #79907e, #6f9184, #699291, #6292a3, #4896a6, #2d9dac, #27a58c, #43aa70, #74ac52, #a8a842, #e0a04f, #f8606e, #9d6bff) !important;
 }
 #colors_sepia {
-  background: linear-gradient(90deg, #242424, #ddbc57) !important;
+  background: linear-gradient(90deg, #101b2e, #e8d077) !important;
 }
 #effects_vignette {
-  background: linear-gradient(270deg, #242424, #CCCCCC) !important;
+  background: linear-gradient(270deg, #101b2e, #d7dde8) !important;
 }
 #effects_clarity {
-  background: light-dark(#bbbbbb, #303030) !important;
+  background: linear-gradient(to right, var(--accent) 0%, var(--accent) var(--p, 50%), light-dark(#a6b2c6, #3e4e70) var(--p, 50%)) !important;
 }
 #effects_noise {
-  background: light-dark(#bbbbbb, #303030) !important;
+  background: linear-gradient(to right, var(--accent) 0%, var(--accent) var(--p, 50%), light-dark(#a6b2c6, #3e4e70) var(--p, 50%)) !important;
 }
 hr {
   border: 1px solid;
-  border-color: light-dark(#f0f0f0, #2e2e2e);
+  border-color: light-dark(#e4e9f2, #253048);
 }
 
 .dark { color-scheme: dark; }

@@ -1,36 +1,46 @@
-# Vue3PhotoEditor
+# Vue3 PhotoEditor
 
-#### Description
-图片编辑器
+A **Vue 3 + WebGL** based front-end-only photo editor. All image processing is done locally in the browser. **100% private, free and open source**.
 
-#### Software Architecture
-Software architecture description
+#### Features
+
+- **Image Loading**: Click / drag-and-drop, URL, Blob, ArrayBuffer, built-in samples
+- **Composition**: Rotate, flip, 90° rotation, perspective correction, crop (free / original / 1:1 / 4:3 / 16:9), resize
+- **Light**: Brightness, exposure, gamma, contrast, shadows, highlights, bloom
+- **Color**: Temperature, tint, vibrance, saturation, sepia
+- **Effects**: Clarity, noise, vignette
+- **Curves**: Visual color curve adjustment
+- **Filters**: 13 Instagram-style LUT filters with blend intensity
+- **Blend**: Overlay another image with adjustable blend ratio
+- **Blur**: Bokeh blur, Gaussian blur, custom blur center
+- **Repair**: Telea algorithm image inpainting (brush mask to remove blemishes)
+- **Recipes**: Save / load edit parameters as JSON
+- **Tools**: Histogram, before/after split view, EXIF/TIFF file info
+- **Export**: JPEG / PNG download, adjustable quality, EXIF preserved
+- **UX**: Light / dark / auto theme, fullscreen, zoom & pan, mobile support
 
 #### Installation
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+Requirements: Node.js 18+
 
-#### Instructions
+```bash
+# 1. Clone repository
+git clone <repo-url>
+cd vue3-img-editor
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+# 2. Install dependencies
+npm install
 
-#### Contribution
+# 3. Start dev server (default http://localhost:3000)
+npm run dev
 
-1.  Fork the repository
-2.  Create Feat_xxx branch
-3.  Commit your code
-4.  Create Pull Request
+# 4. Production build
+npm run build
 
+# 5. Preview build
+npm run serve
+```
 
-#### Gitee Feature
+#### License
 
-1.  You can use Readme\_XXX.md to support different languages, such as Readme\_en.md, Readme\_zh.md
-2.  Gitee blog [blog.gitee.com](https://blog.gitee.com)
-3.  Explore open source project [https://gitee.com/explore](https://gitee.com/explore)
-4.  The most valuable open source project [GVP](https://gitee.com/gvp)
-5.  The manual of Gitee [https://gitee.com/help](https://gitee.com/help)
-6.  The most popular members  [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+All source code is owned by the project author.

@@ -2,10 +2,10 @@
   <div
     ref="histoRef"
     id="histo"
-    style="position:absolute;left:10px;width:260px;height:100px;background-color:grey;padding:5px;cursor:pointer;"
+    style="position:absolute;right:14px;width:260px;height:100px;padding:8px 10px;cursor:pointer;border-radius:12px;background:light-dark(rgba(255,255,255,0.7),rgba(18,27,48,0.75));backdrop-filter:blur(20px) saturate(1.4);-webkit-backdrop-filter:blur(20px) saturate(1.4);border:1px solid light-dark(rgba(255,255,255,0.5),rgba(120,160,220,0.18));box-shadow:0 8px 24px rgba(10,20,45,0.18),inset 0 1px 0 light-dark(rgba(255,255,255,0.5),rgba(255,255,255,0.06));"
   >
-    <div style="position:absolute;color:grey;right:40px;font-size:80%;">{{ colorspace }}</div>
-    <canvas ref="canvasRef" id="histogram" width="256" height="150" style="width:100%;height:100%;background-color:#121212;"></canvas>
+    <div style="position:absolute;color:light-dark(#6a7a92,rgba(255,255,255,0.5));right:40px;top:6px;font-size:80%;font-family:var(--font-mono);letter-spacing:1px;text-transform:uppercase;">{{ colorspace }}</div>
+    <canvas ref="canvasRef" id="histogram" width="256" height="150" style="width:100%;height:100%;background-color:light-dark(#0a101d,#060a14);border-radius:6px;"></canvas>
   </div>
 </template>
 

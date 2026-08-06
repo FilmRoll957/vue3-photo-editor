@@ -7,7 +7,6 @@
     :onReset="() => resetFilters()"
     :resetDisabled="!selectedIdx"
   >
-    <div id="loader" style="width:23px;fill:orange;display:none;position:absolute;top:-30px;" v-html="icon_shutter"></div>
     <div class="filter_grid">
       <button
         v-for="(f, idx) in filtersLUT"
@@ -23,7 +22,6 @@
 <script setup>
 import { ref, inject } from 'vue'
 import Section from './Section.vue'
-import icon_shutter from '../assets/icon_shutter_rotate.svg?raw'
 
 const sel = inject('sel')
 
@@ -74,14 +72,11 @@ async function loadFilterLUT(url) {
 }
 
 async function setFilter(idx) {
-  const loader = document.getElementById('loader')
-  if (loader) setTimeout(() => loader.style.display = '', 20)
   const _f = filtersLUT[parseInt(idx)]
   if (_f.map1 && typeof _f.map1 === 'function') _f.map1 = await loadFilterLUT((await _f.map1()).default)
   if (_f.map2 && typeof _f.map2 === 'function') _f.map2 = await loadFilterLUT((await _f.map2()).default)
   const { type, mtx, map1, map2, label } = _f
   props.params.filters.opt = { type, mtx, map1, map2, label }
-  if (loader) loader.style.display = 'none'
 }
 
 async function selectFilter(idx) {
@@ -111,28 +106,36 @@ function resetFilters() {
   gap:3px;
 }
 .btn_insta{
-  color:#fff;
+  color: light-dark(#3a4a62, rgba(255,255,255,0.8));
   font-size:11px;
-  padding:3px 4px;
+  padding:5px 4px;
   margin:0;
   flex: 1 1 0;
   min-width: calc((100% - 9px) / 4);
   max-width: calc((100% - 9px) / 4);
   box-sizing:border-box;
-  border:1px solid #555;
-  background:transparent;
+  border:1px solid light-dark(rgba(30,50,90,0.12), rgba(120,160,220,0.15));
+  background: light-dark(rgba(255,255,255,0.4), rgba(255,255,255,0.06));
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius:8px;
   cursor:pointer;
   line-height:1.3;
   word-break:keep-all;
   white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
+  transition: all 0.2s ease;
 }
 .btn_insta:hover{
-  background:rgba(255,255,255,0.1);
+  background: var(--accent-soft);
+  border-color: var(--accent-hover);
+  transform: translateY(-1px);
 }
 .btn_insta[selected]{
-  border-color:darkorange;
-  color:darkorange;
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-soft);
+  box-shadow: 0 2px 8px var(--accent-soft);
 }
 </style>

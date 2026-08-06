@@ -2,14 +2,32 @@
   <div class="minieditor">
     <div class="app">
       <template v-if="!file && !importData">
-        <div class="main" style="justify-content:center;">
-          <h1>{{ store.appName }}</h1>
-          <div>
-            <ClickDropFile text="点击或拖放载入图片" accept="image/*" @file="(f) => readImage(f, onImageLoaded)" style="height:120px;width:220px;white-space:nowrap;" />
-            <button v-if="showSamples" style="height:120px;width:120px;white-space:nowrap;" @click="samples">示例图片</button>
-          </div>
-          <div style="font-size:13px;color:gray;margin-top:20px;">
-            <i>100% 隐私和离线！<br>100% 免费和开源</i>
+        <div class="main landing">
+          <div class="hero_card">
+            <div class="hero_meta">
+              <span class="hero_index">N°01 — Photo Editor</span>
+              <span class="hero_version">v0.1.0 · 2026</span>
+            </div>
+            <h1>Vue3 <em>Photo</em>Editor</h1>
+            <p class="hero_subtitle">专业级在线照片编辑器 —— 所有图像处理在浏览器本地完成，无上传、无依赖。</p>
+            <div class="hero_actions">
+              <ClickDropFile text="点击或拖放载入图片" accept="image/*" @file="(f) => readImage(f, onImageLoaded)" style="height:120px;width:220px;white-space:nowrap;" />
+              <button v-if="showSamples" style="height:120px;width:120px;white-space:nowrap;" @click="samples">示例图片</button>
+            </div>
+            <div class="hero_features">
+              <div class="hero_feature">
+                <span class="feat_num">01</span>
+                <span class="feat_body"><b>100% 隐私离线</b><em>所有运算在浏览器本地完成，图像不上传任何服务器</em></span>
+              </div>
+              <div class="hero_feature">
+                <span class="feat_num">02</span>
+                <span class="feat_body"><b>免费开源</b><em>源代码完全开放，可自由使用、审查与修改</em></span>
+              </div>
+              <div class="hero_feature">
+                <span class="feat_num">03</span>
+                <span class="feat_body"><b>无需注册</b><em>打开即用，不收集任何用户信息或 Cookie</em></span>
+              </div>
+            </div>
           </div>
         </div>
       </template>
@@ -28,20 +46,6 @@
 
         <div class="main">
           <div class="container">
-            <div id="editor" class="editor" @click.self="sidebarClick">
-              <div id="zoomable" @dblclick.stop="canvasDblClick" @click="canvasClick">
-                <div id="pannable">
-                  <canvas ref="canvasRef" id="canvas" class="checkered"></canvas>
-                  <template v-if="showSplit">
-                    <SplitViewWidget :image="splitimage" />
-                  </template>
-                  <template v-if="sel === 'composition'">
-                    <CropperCanvas :canvas="canvasRef" :params="params" :onCropUpdate="onCropUpdate" />
-                  </template>
-                </div>
-              </div>
-            </div>
-
             <div class="sidebar" @click="sidebarClick">
               <div class="menubuttons">
                 <div style="display:flex;align-items:center;justify-content:center;">
@@ -51,7 +55,7 @@
                   <template v-if="!!importData">
                     <button style="width:105px;height:30px;" @click="() => importData.cb()">取消</button>
                   </template>
-                  <button style="width:105px;height:30px;" id="btn_download" @click="showDownloadDialog">下载</button>
+                  <button style="width:105px;height:30px;display:inline-flex;align-items:center;justify-content:center;gap:5px;" id="btn_download" @click="showDownloadDialog"><i class="fa-solid fa-download" style="font-size:11px;"></i>下载</button>
                 </div>
                 <div style="display:flex;align-items:center;justify-content:center;gap:4px;">
                   <button style="height:30px;font-size:12px;display:inline-flex;align-items:center;gap:3px;padding:0 8px;" id="btn_info" @click="showInfoDialog" title="文件信息">
@@ -75,6 +79,20 @@
                 <BlurPanel :params="params" :onUpdate="updateGL" />
                 <RecipesPanel :params="params" :onUpdate="updateGL" />
                 <HealPanel :params="params" :onUpdate="updateGL" />
+              </div>
+            </div>
+
+            <div id="editor" class="editor" @click.self="sidebarClick">
+              <div id="zoomable" @dblclick.stop="canvasDblClick" @click="canvasClick">
+                <div id="pannable">
+                  <canvas ref="canvasRef" id="canvas" class="checkered"></canvas>
+                  <template v-if="showSplit">
+                    <SplitViewWidget :image="splitimage" />
+                  </template>
+                  <template v-if="sel === 'composition'">
+                    <CropperCanvas :canvas="canvasRef" :params="params" :onCropUpdate="onCropUpdate" />
+                  </template>
+                </div>
               </div>
             </div>
           </div>
@@ -107,7 +125,7 @@
             </div>
             <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:8px;">
               <button @click="showDownload = false">取消</button>
-              <button @click="doDownload" style="background:darkorange;">下载</button>
+              <button @click="doDownload" style="background:var(--accent-strong);">下载</button>
             </div>
           </div>
         </div>
@@ -509,26 +527,44 @@ const TempMount = {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
+  animation: overlayIn 0.25s ease both;
+}
+
+@keyframes overlayIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 .modal_dialog {
-  background: light-dark(#ffffff, #292929);
-  border-radius: 12px;
-  padding: 20px;
+  background: light-dark(rgba(255, 255, 255, 0.88), rgba(27, 39, 64, 0.9));
+  backdrop-filter: blur(24px) saturate(1.3);
+  -webkit-backdrop-filter: blur(24px) saturate(1.3);
+  border-radius: 16px;
+  padding: 22px;
   min-width: 320px;
   max-width: 90vw;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  border: 1px solid light-dark(rgba(255, 255, 255, 0.5), rgba(120, 160, 220, 0.18));
+  box-shadow: 0 16px 48px rgba(8, 15, 35, 0.35), inset 0 1px 0 light-dark(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.06));
+  animation: dialogIn 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes dialogIn {
+  from { opacity: 0; transform: scale(0.95) translateY(10px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
 }
 
 .modal_dialog label {
-  font-size: 14px;
-  color: gray;
+  font-size: 13px;
+  color: light-dark(#5a6a80, rgba(255, 255, 255, 0.5));
   min-width: 60px;
+  font-weight: 500;
 }
 
 #btn_info span svg,
@@ -542,9 +578,13 @@ const TempMount = {
 .info_section {
   display: block;
   margin-top: 8px;
-  color: darkorange;
-  font-size: 13px;
-  border-bottom: 1px solid #444;
-  padding-bottom: 2px;
+  color: var(--accent-strong);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--hairline);
+  padding-bottom: 4px;
 }
 </style>

@@ -41,7 +41,7 @@ function dropHandler(ev) {
 
 function dragOverHandler(ev) {
   ev.preventDefault()
-  ev.target.style.borderColor = 'darkorange'
+  ev.target.style.borderColor = 'var(--accent)'
 }
 
 function dragLeaveHandler(ev) {

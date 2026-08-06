@@ -268,9 +268,9 @@ function setHeight() {
   height: 20px;
   padding: 0;
   z-index: 10;
-  background: darkorange;
+  background: var(--accent-strong);
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
 }
 

@@ -1,9 +1,3 @@
-//FROM https://github.com/antimatter15/inpaint.js
-
-// This file isn't very well documented, but that shouldn't be a huge problem
-// because most of this is a fairly straightforward port of the scikit-image
-// implementation which can be found in 
-// https://github.com/chintak/scikit-image/blob/inpaint/skimage/filter/_inpaint_fmm.pyx
 import HeapQueue from './heapqueue.js'
 
 export default function InpaintTelea(width, height, image, mask, radius){
@@ -122,13 +116,7 @@ export default function InpaintTelea(width, height, image, mask, radius){
       // Jy -= weight * grady_img * ry
       norm += weight
     }
-    // the fmm.py which this is based on actually implements a slightly different
-    // algorithm which apparently "considers the effect of gradient of intensity value"
-    // which is some kind of voodoo magic that I don't understand which is apparently
-    // in the OpenCV implementation. Unless I've been porting the algorithm wrong,
-    // which is certainly a possibility and I invested quite a bit of effort into
-    // that hypothesis by way of rewriting and checking every line of code a few
-    // times. 
+    // FMM 算法参考实现，此处采用简化版本
     image[n] = Ia / norm;
     // image[n] = Ia / norm + (Jx + Jy) / Math.sqrt(Jx * Jx + Jy * Jy);
   }

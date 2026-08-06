@@ -72,33 +72,59 @@ function resetSection() {
 
 <style scoped>
 .section {
-  background-color: light-dark(#e0e0e0, #222222);
-  border-radius: 15px;
-  padding: 10px;
-  margin: 2px 0;
+  background: light-dark(rgba(255, 255, 255, 0.52), rgba(27, 37, 64, 0.62));
+  backdrop-filter: blur(10px) saturate(1.2);
+  -webkit-backdrop-filter: blur(10px) saturate(1.2);
+  border-radius: 12px;
+  padding: 10px 12px;
+  margin: 3px 0;
   font-size: 14px;
-  height: 23px;
-  transition: height .3s;
+  height: 25px;
+  transition: height .35s cubic-bezier(0.22, 1, 0.36, 1), background .2s, border-color .2s, box-shadow .2s, transform .15s;
   overflow: hidden;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
   position: relative;
   cursor: pointer;
+  border: 1px solid light-dark(rgba(30, 50, 90, 0.06), rgba(120, 160, 220, 0.1));
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) scaleY(0);
+  width: 3px;
+  height: 60%;
+  border-radius: 0 2px 2px 0;
+  background: var(--accent);
+  transition: transform .25s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .section:hover {
-  background-color: light-dark(#ededed, #292929);
+  background: light-dark(rgba(255, 255, 255, 0.68), rgba(35, 48, 82, 0.72));
+  border-color: var(--accent-soft);
+  box-shadow: 0 2px 12px var(--accent-soft);
+  transform: translateX(1px);
 }
 
 .section[selected] {
-  background-color: light-dark(#d4d4d4, #292929);
+  background: light-dark(rgba(247, 250, 253, 0.82), rgba(35, 48, 82, 0.78));
+  border-color: var(--accent-soft);
   overflow: visible;
   height: auto;
+  box-shadow: 0 6px 24px rgba(10, 20, 45, 0.1), 0 0 0 1px var(--accent-soft) inset;
+}
+
+.section[selected]::before {
+  transform: translateY(-50%) scaleY(1);
 }
 
 .section[selected] .section_label {
-  color: darkorange;
+  color: var(--accent-strong);
+  font-weight: 600;
 }
 
 .section_header {
@@ -109,14 +135,18 @@ function resetSection() {
 
 .section_skip {
   width: 20px;
-  color: darkorange;
+  color: var(--accent-strong);
   cursor: cell;
 }
 
 .section_label {
   flex: 1;
   text-align: left;
-  color: gray;
+  color: light-dark(#6a7a92, rgba(255, 255, 255, 0.5));
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.3px;
 }
 
 .reset_btn {
@@ -153,7 +183,7 @@ function resetSection() {
   width: 40px;
   height: 20px;
   padding: 0;
-  background: darkorange;
+  background: var(--accent-strong);
   display: none;
 }
 
