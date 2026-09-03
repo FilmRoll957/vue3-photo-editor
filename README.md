@@ -119,8 +119,8 @@ npm run serve
 3. 提交代码
 4. 新建 Pull Request
 
-#### 声明
+#### 致谢
 
-本项目为原创开发，所有源代码版权归项目作者所有。
+本项目基于 [mini-photo-editor](https://github.com/xdadda/mini-photo-editor)（作者 xdadda，MIT 协议）进行 Vue 3 版本的重构与扩展，在此感谢原作者的开源贡献。
 
 
