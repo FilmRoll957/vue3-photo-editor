@@ -28,6 +28,12 @@
                 <span class="feat_body"><b>无需注册</b><em>打开即用，不收集任何用户信息或 Cookie</em></span>
               </div>
             </div>
+            <div class="hero_qrcode">
+              <div class="qrcode_box">
+                <img :src="qrcodeImg" alt="公众号二维码" />
+                <span class="qrcode_caption">扫码关注公众号</span>
+              </div>
+            </div>
           </div>
         </div>
       </template>
@@ -190,6 +196,7 @@ import BlenderPanel from './BlenderPanel.vue'
 import BlurPanel from './BlurPanel.vue'
 import RecipesPanel from './RecipesPanel.vue'
 import HealPanel from './HealPanel.vue'
+import qrcodeImg from '../assets/444.png'
 
 import CropperCanvas from './CropperCanvas.vue'
 import HistogramWidget from './HistogramWidget.vue'
