@@ -14,7 +14,7 @@
         class="btn_insta"
         :selected="selectedIdx === idx || undefined"
         @click="selectFilter(idx)"
-      >{{ filterLabels[f.label] || f.label }}</button>
+      >{{ filterList[f.label]?.tag || f.label }}</button>
     </div>
   </Section>
 </template>
@@ -32,20 +32,20 @@ const props = defineProps({
 
 const selectedIdx = ref(false)
 
-const filterLabels = {
-  aden: '阿登',
-  crema: '奶油',
-  clarendon: '克拉伦登',
-  gingham: '方格',
-  juno: '朱诺',
-  lark: '云雀',
-  ludwig: '路德维格',
-  moon: '月光',
-  reyes: '雷耶斯',
-  polaroid: '宝丽来',
-  kodak: '柯达',
-  browni: '布朗尼',
-  vintage: '复古',
+const filterList = {
+  aden:      { name: 'Aden',      tag: '柔光冷调' },
+  crema:     { name: 'Crema',     tag: '暖棕奶霜' },
+  clarendon: { name: 'Clarendon', tag: '高对比冷色' },
+  gingham:   { name: 'Gingham',   tag: '轻格纹提亮' },
+  juno:      { name: 'Juno',      tag: '紫橙胶片' },
+  lark:      { name: 'Lark',      tag: '低饱和灰调' },
+  ludwig:    { name: 'Ludwig',    tag: '暖灰柔焦' },
+  moon:      { name: 'Moon',      tag: '冷灰哑光' },
+  reyes:     { name: 'Reyes',     tag: '复古暖哑' },
+  polaroid:  { name: 'Polaroid',  tag: '拍立得褪色' },
+  kodak:     { name: 'Kodak',     tag: '柯达暖黄' },
+  browni:    { name: 'Brownie',   tag: '巧克力棕调' },
+  vintage:   { name: 'Vintage',   tag: '老胶片颗粒' },
 }
 
 const filtersLUT = [
@@ -107,8 +107,8 @@ function resetFilters() {
 }
 .btn_insta{
   color: light-dark(#3a4a62, rgba(255,255,255,0.8));
-  font-size:11px;
-  padding:5px 4px;
+  font-size:10px;
+  padding:6px 3px;
   margin:0;
   flex: 1 1 0;
   min-width: calc((100% - 9px) / 4);
