@@ -29,10 +29,14 @@
               </div>
             </div>
             <div class="hero_qrcode">
-              <div class="qrcode_box">
-                <img :src="qrcodeImg" alt="公众号二维码" />
-                <span class="qrcode_caption">扫码关注公众号</span>
-              </div>
+              <a class="qrcode_box" href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzcwOTM4MDA1Nw==&action=getalbum&album_id=4673555342872559616#wechat_redirect" target="_blank" rel="noopener">
+                <img :src="qrcodeImg" alt="公众号文章" />
+                <span class="qrcode_caption">公众号文章</span>
+              </a>
+              <a class="qrcode_box" href="#小程序://MF的水印小工具/实用水印工具箱/BXAcZ71PNcjszTx" target="_blank" rel="noopener">
+                <img :src="miniappImg" alt="实用水印工具箱" />
+                <span class="qrcode_caption">小程序入口</span>
+              </a>
             </div>
           </div>
         </div>
@@ -197,6 +201,7 @@ import BlurPanel from './BlurPanel.vue'
 import RecipesPanel from './RecipesPanel.vue'
 import HealPanel from './HealPanel.vue'
 import qrcodeImg from '../assets/444.png'
+import miniappImg from '../assets/555.png'
 
 import CropperCanvas from './CropperCanvas.vue'
 import HistogramWidget from './HistogramWidget.vue'
