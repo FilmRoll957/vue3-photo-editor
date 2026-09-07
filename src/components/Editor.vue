@@ -33,10 +33,6 @@
                 <img :src="qrcodeImg" alt="公众号文章" />
                 <span class="qrcode_caption">公众号文章</span>
               </a>
-              <div class="qrcode_box">
-                <img :src="miniappImg" alt="小程序二维码" />
-                <span class="qrcode_caption">扫码进入小程序</span>
-              </div>
             </div>
           </div>
         </div>
@@ -201,7 +197,6 @@ import BlurPanel from './BlurPanel.vue'
 import RecipesPanel from './RecipesPanel.vue'
 import HealPanel from './HealPanel.vue'
 import qrcodeImg from '../assets/444.png'
-import miniappImg from '../assets/666.jpg'
 
 import CropperCanvas from './CropperCanvas.vue'
 import HistogramWidget from './HistogramWidget.vue'
