@@ -192,6 +192,9 @@
   padding-top: 18px;
   border-top: 1px solid var(--hairline);
   animation: heroFadeIn 0.6s ease 0.6s both;
+  display: flex;
+  justify-content: center;
+  gap: 28px;
 }
 
 .qrcode_box {
@@ -200,7 +203,6 @@
   align-items: center;
   gap: 8px;
   text-decoration: none;
-  cursor: pointer;
   transition: transform 0.2s ease;
 }
 
@@ -210,13 +212,14 @@
 
 .qrcode_box img {
   width: 100%;
-  max-width: 200px;
+  max-width: 140px;
   height: auto;
   border-radius: 10px;
   border: 1px solid light-dark(rgba(30, 50, 90, 0.1), rgba(120, 160, 220, 0.2));
   background: #fff;
   padding: 4px;
   box-shadow: 0 4px 14px rgba(8, 15, 35, 0.15);
+  cursor: pointer;
 }
 
 .qrcode_caption {
