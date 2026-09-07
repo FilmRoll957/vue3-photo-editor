@@ -33,10 +33,6 @@
                 <img :src="qrcodeImg" alt="公众号文章" />
                 <span class="qrcode_caption">公众号文章</span>
               </a>
-              <a class="qrcode_box" href="#小程序://MF的水印小工具/实用水印工具箱/BXAcZ71PNcjszTx" target="_blank" rel="noopener">
-                <img :src="miniappImg" alt="实用水印工具箱" />
-                <span class="qrcode_caption">小程序入口</span>
-              </a>
             </div>
           </div>
         </div>
@@ -201,7 +197,6 @@ import BlurPanel from './BlurPanel.vue'
 import RecipesPanel from './RecipesPanel.vue'
 import HealPanel from './HealPanel.vue'
 import qrcodeImg from '../assets/444.png'
-import miniappImg from '../assets/555.png'
 
 import CropperCanvas from './CropperCanvas.vue'
 import HistogramWidget from './HistogramWidget.vue'
