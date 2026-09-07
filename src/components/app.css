@@ -211,9 +211,9 @@
 }
 
 .qrcode_box img {
-  width: 100%;
-  max-width: 140px;
-  height: auto;
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
   border-radius: 10px;
   border: 1px solid light-dark(rgba(30, 50, 90, 0.1), rgba(120, 160, 220, 0.2));
   background: #fff;
